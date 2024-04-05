@@ -3,7 +3,7 @@ const { CATCH_BAD_REQUEST } = require("../../utils/utils");
 
 const list_weights = async (req, res) => {
   try {
-    const weights = await Weight.findOne({ _id: req.user._id });
+    const weights = await Weight.find({ user_id: req.user._id }).lean();
 
     res.status(200).json({
       code: 200,

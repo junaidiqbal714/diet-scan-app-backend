@@ -80,7 +80,7 @@ const update_profile = async (req, res) => {
     user.gender = req.body.gender;
     user.date_of_birth = new Date(req.body.date_of_birth);
     user.height = req.body.height;
-    user.height_unit = req.body.height_unit;
+    // user.height_unit = req.body.height_unit;
     user.allergies = req.body.allergies;
     user.avoid_ingredients = req.body.avoid_ingredients;
     user.target_calories = req.body.target_calories;

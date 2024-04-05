@@ -1,3 +1,4 @@
+const moment = require("moment");
 const { Weight, validateWeight } = require("../../models/weight");
 const { CATCH_BAD_REQUEST } = require("../../utils/utils");
 
@@ -14,6 +15,7 @@ const add_weight = async (req, res) => {
     let weight = new Weight({
       user_id: req.user._id,
       weight: req.body.weight,
+      date: moment(moment().format("YYYY-MM-DD")),
     });
     weight = await weight.save();
 
