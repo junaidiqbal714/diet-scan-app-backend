@@ -1,12 +1,12 @@
 {
   "name": "diet-scan-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Welcome to diet scan app",
   "main": "app.js",
   "scripts": {
-    "local": "nodemon app.js",
-    "dev": "forever start app.js",
-    "start": "forever start app.js"
+    "local": "nodemon",
+    "dev": "forever start ./bin/diet-scan-backend-dev",
+    "prod": "forever start ./bin/diet-scan-backend-dev"
   },
   "keywords": [],
   "author": "",

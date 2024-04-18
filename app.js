@@ -1,14 +1,14 @@
-const winston = require("winston");
+// const winston = require("winston");
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const fileUpload = require("express-fileupload");
 const fs = require("fs");
 const path = require("path");
-const config = require("config");
+// const config = require("config");
 const app = express();
-const http = require("http");
-const server = http.createServer(app);
+// const http = require("http");
+// const server = http.createServer(app);
 
 require("./startup/logging")();
 require("./startup/cors")(app);
@@ -16,16 +16,11 @@ require("./startup/db")();
 require("./startup/config")();
 require("./startup/validation")();
 
-const port = process.env.PORT || config.get("port");
-// server = app.listen(port, () => {
-//   console.log(`Server is listening on port: ${port}`);
-//   // winston.info(`Server is listening on port: ${port}`);
-// });
+// const port = process.env.PORT || config.get("port");
 
-server.listen(port, () => {
-  console.log(`Server is listening on port: ${port}`);
-  // winston.info(`Server is listening on port: ${port}`);
-});
+// server.listen(port, () => {
+//   console.log(`Server is listening on port: ${port}`);
+// });
 
 app.use(logger("dev"));
 app.use(
@@ -44,4 +39,11 @@ app.use(fileUpload());
 
 require("./startup/routes")(app);
 
-module.exports = server;
+app.use(function (err, req, res, next) {
+  res.locals.message = err.message;
+  res.locals.error = err;
+  res.status(err.status || 500);
+  res.render("error");
+});
+
+module.exports = app;
