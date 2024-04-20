@@ -1,4 +1,5 @@
 const { User } = require("../../models/user");
+const { Weight } = require("../../models/weight");
 const {
   CATCH_BAD_REQUEST,
   DELETE_FILES_FROM_S3,
@@ -20,6 +21,7 @@ const delete_user = async (req, res) => {
         .json({ code: 400, message: "Unable to delete this account" });
     }
 
+    await Weight.deleteMany({ user_id: user._id });
     DELETE_FILES_FROM_S3(user.profile_pic);
 
     res.status(200).json({
