@@ -28,6 +28,7 @@ const add_calories = async (req, res) => {
           .status(400)
           .json({ code: 400, message: "Unable to log calorie" });
       }
+      food_calories.push(calorie);
     }
 
     res.status(200).json({
