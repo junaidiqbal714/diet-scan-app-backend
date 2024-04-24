@@ -82,7 +82,7 @@ const login = async (req, res) => {
           token,
         });
       }
-    } else if (body.signup_platform === "Apple") {
+    } else if (req.body.signup_platform === "Apple") {
       let email = "";
       const apple_resp = await appleSignin
         .verifyIdToken(req.body.id_token, {
