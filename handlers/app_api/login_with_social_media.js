@@ -37,6 +37,11 @@ const login = async (req, res) => {
         })
         .catch(function (error) {
           console.log("error: ", error);
+          return res.status(400).json({
+            code: 400,
+            message:
+              "Unable to verify token. Check logs on server for more information",
+          });
         });
 
       let user_exists = await User.findOne({ email });
@@ -94,6 +99,11 @@ const login = async (req, res) => {
         })
         .catch(function (error) {
           console.log("error: ", error);
+          return res.status(400).json({
+            code: 400,
+            message:
+              "Unable to verify token. Check logs on server for more information",
+          });
         });
 
       let user_exists = await User.findOne({ email });
