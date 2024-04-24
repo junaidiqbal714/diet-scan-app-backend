@@ -8,7 +8,7 @@ const { CATCH_BAD_REQUEST } = require("../../utils/utils");
 
 const login = async (req, res) => {
   try {
-    // console.log("req.body: ", req.body);
+    console.log("req.body: ", req.body);
     const { error } = validateSocialLogin(req.body);
     if (error)
       return res.status(400).json({
@@ -28,6 +28,7 @@ const login = async (req, res) => {
         withCredentials: true,
       })
         .then(function (resp) {
+          console.log("resp: ", resp);
           first_name = resp.data.given_name;
           last_name = resp.data.family_name;
           email = resp.data.email;
