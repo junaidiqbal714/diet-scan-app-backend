@@ -8,7 +8,7 @@ const { CATCH_BAD_REQUEST } = require("../../utils/utils");
 
 const login = async (req, res) => {
   try {
-    console.log("req.body: ", req.body);
+    // console.log("req.body: ", req.body);
     const { error } = validateSocialLogin(req.body);
     if (error)
       return res.status(400).json({
@@ -35,11 +35,11 @@ const login = async (req, res) => {
           name = first_name + " " + last_name;
           // profile_image = resp.data.picture;
         })
-        .catch(function (resp) {
-          console.log(resp);
+        .catch(function (error) {
+          console.log("error: ", error);
         });
 
-      let user_exists = await User.find({ email });
+      let user_exists = await User.findOne({ email });
       if (user_exists) {
         const token = jwt.sign(
           { _id: user_exists._id },
@@ -91,11 +91,11 @@ const login = async (req, res) => {
         .then(function (resp) {
           email = resp.email;
         })
-        .catch(function (resp) {
-          console.log(resp);
+        .catch(function (error) {
+          console.log("error: ", error);
         });
 
-      let user_exists = await User.find({ email });
+      let user_exists = await User.findOne({ email });
 
       if (user_exists) {
         const token = jwt.sign(
