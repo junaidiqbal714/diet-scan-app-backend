@@ -9,6 +9,6 @@ router.post("/login", login);
 
 router.put("/update_password", auth, update_password);
 
-router.put("/login_with_social_media", login_with_social_media);
+router.post("/login_with_social_media", login_with_social_media);
 
 module.exports = router;

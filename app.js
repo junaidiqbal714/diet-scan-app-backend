@@ -10,6 +10,8 @@ const app = express();
 // const http = require("http");
 // const server = http.createServer(app);
 
+console.log("Starting app...");
+
 require("./startup/logging")();
 require("./startup/cors")(app);
 require("./startup/db")();
