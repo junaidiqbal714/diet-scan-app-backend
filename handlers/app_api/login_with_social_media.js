@@ -82,7 +82,7 @@ const login = async (req, res) => {
           token,
         });
       }
-    } else if (req.body.signup_platform === "Apple") {
+    } else if (req.body.signup_platform === "apple") {
       let email = "";
       const apple_resp = await appleSignin
         .verifyIdToken(req.body.id_token, {
@@ -140,6 +140,8 @@ const login = async (req, res) => {
           token,
         });
       }
+    } else {
+      return res.status(400).json({ code: 400, message: "Invalid platform" });
     }
   } catch (ex) {
     CATCH_BAD_REQUEST(res, ex);
