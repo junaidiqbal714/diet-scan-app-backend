@@ -89,6 +89,7 @@ const login = async (req, res) => {
           // Add more validations if needed
         })
         .then(function (resp) {
+          console.log("resp: ", resp);
           email = resp.email;
         })
         .catch(function (error) {
