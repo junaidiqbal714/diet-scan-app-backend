@@ -1,6 +1,9 @@
 const { v1: uuidv4 } = require("uuid");
 const s3 = require("../config/s3_config");
 const upload = require("../config/multer_config");
+let admin = require("firebase-admin");
+let serviceAccount = require("./dietscanapp-674b4-firebase-adminsdk-vd52m-13178e5bf1.json");
+admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
 
 const CATCH_BAD_REQUEST = async (res, error) => {
   console.log(error);

@@ -21,7 +21,7 @@ function validateUpdatePassword(body) {
 
 function validateSocialLogin(body) {
   const schema = {
-    code: Joi.string().required(),
+    id_token: Joi.string().required(),
     signup_platform: Joi.string().required().valid("google", "apple"),
   };
 

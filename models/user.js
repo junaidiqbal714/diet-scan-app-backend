@@ -6,7 +6,7 @@ const _ = require("lodash");
 const userSchema = new mongoose.Schema({
   user_name: { type: String, trim: true, unique: true },
   email: { type: String, required: true },
-  password: { type: String, required: true },
+  password: { type: String },
   name: { type: String, trim: true },
   profile_pic: { type: String, default: "", trim: true },
   date_of_birth: { type: Date, default: null },
