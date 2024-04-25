@@ -1,3 +1,4 @@
+const postmark = require("postmark");
 const { v1: uuidv4 } = require("uuid");
 const s3 = require("../config/s3_config");
 const upload = require("../config/multer_config");
@@ -65,8 +66,26 @@ const DELETE_FILES_FROM_S3 = async (file_url) => {
   return delete_promise;
 };
 
+const SEND_EMAIL_FROM_POSTMARK = async (send_to, subject, text) => {
+  console.log("POSTMARK_API_KEY: ", process.env.POSTMARK_API_KEY);
+  console.log("send_to: ", send_to);
+  console.log("subject: ", subject);
+  console.log("text: ", text);
+  let client = new postmark.ServerClient(process.env.POSTMARK_API_KEY);
+
+  const result = await client.sendEmail({
+    From: "support@dietscan.online",
+    To: send_to,
+    Subject: subject,
+    TextBody: text,
+  });
+
+  console.log("OTP sent successfully: ", result.MessageID);
+};
+
 module.exports = {
   CATCH_BAD_REQUEST,
   UPLOAD_FILE_ON_S3,
   DELETE_FILES_FROM_S3,
+  SEND_EMAIL_FROM_POSTMARK,
 };

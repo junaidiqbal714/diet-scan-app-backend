@@ -22,6 +22,8 @@ const userSchema = new mongoose.Schema({
     default: "manual",
     trim: true,
   },
+  verification_code: { type: String, trim: true, default: "" },
+  verification_status: { type: Boolean, default: false },
 });
 
 userSchema.plugin(timestamps);

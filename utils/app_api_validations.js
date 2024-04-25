@@ -28,6 +28,33 @@ function validateSocialLogin(body) {
   return Joi.validate(body, schema);
 }
 
+function validateSendOTP(body) {
+  const schema = {
+    email: Joi.string().required().email({ minDomainAtoms: 2 }),
+  };
+
+  return Joi.validate(body, schema);
+}
+
+function validateCodeVerification(body) {
+  const schema = {
+    email: Joi.string().required().email({ minDomainAtoms: 2 }).trim(),
+    verification_code: Joi.string().required().min(6),
+  };
+  return Joi.validate(body, schema);
+}
+function validateResetPassword(body) {
+  const schema = {
+    email: Joi.string().required().email({ minDomainAtoms: 2 }).trim(),
+    new_password: Joi.string().required().min(5),
+    confirm_password: Joi.string().required().min(5),
+  };
+  return Joi.validate(body, schema);
+}
+
 exports.validateLogin = validateLogin;
 exports.validateUpdatePassword = validateUpdatePassword;
 exports.validateSocialLogin = validateSocialLogin;
+exports.validateSendOTP = validateSendOTP;
+exports.validateCodeVerification = validateCodeVerification;
+exports.validateResetPassword = validateResetPassword;

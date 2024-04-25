@@ -6,7 +6,7 @@ const { User } = require("../../models/user");
 const { validateSocialLogin } = require("../../utils/app_api_validations");
 const { CATCH_BAD_REQUEST } = require("../../utils/utils");
 
-const login = async (req, res) => {
+const login_with_social_media = async (req, res) => {
   try {
     // console.log("req.body: ", req.body);
     const { error } = validateSocialLogin(req.body);
@@ -159,4 +159,4 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = login;
+module.exports = login_with_social_media;
