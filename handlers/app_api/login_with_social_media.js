@@ -37,11 +37,11 @@ const login = async (req, res) => {
         })
         .catch(function (error) {
           console.log("error: ", error);
-          return res.status(400).json({
-            code: 400,
-            message:
-              "Unable to verify token. Check logs on server for more information",
-          });
+          // return res.status(400).json({
+          //   code: 400,
+          //   message:
+          //     "Unable to verify token. Check logs on server for more information",
+          // });
         });
 
       let user_exists = await User.findOne({ email });
@@ -89,6 +89,7 @@ const login = async (req, res) => {
       }
     } else if (req.body.signup_platform === "apple") {
       let email = "";
+
       const apple_resp = await appleSignin
         .verifyIdToken(req.body.id_token, {
           // Add more validations if needed
@@ -99,11 +100,11 @@ const login = async (req, res) => {
         })
         .catch(function (error) {
           console.log("error: ", error);
-          return res.status(400).json({
-            code: 400,
-            message:
-              "Unable to verify token. Check logs on server for more information",
-          });
+
+          // return res.status(400).json({
+          //   code: 400,
+          //   message: error.message,
+          // });
         });
 
       let user_exists = await User.findOne({ email });
